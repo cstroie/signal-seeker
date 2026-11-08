@@ -25,15 +25,17 @@ does as she pleases. The station keeps running when you step away.
 | `title.asm` | The title screen, timing by the clock device, the night's tally, dawn |
 | `sigseek.txt` | The content: messages, callers' letters, Archive fragments, postcards |
 | `mkdat.js` | Packs `sigseek.txt` into `SIGSEEK.DAT`, checking every length against the screen |
-| `build.sh` | pasmo, then mkdat, then copies both onto the shelf disk |
+| `build.sh` | pasmo, then mkdat; `DEST=` copies both onto another directory (the shelf disk) |
 
 Shipped: `SIGSEEK.COM` (about 34K) and `SIGSEEK.DAT` (about 10K, read whole into
 memory after the program) on the **Signal Seeker** shelf disk
-(`disks/shelf/sigseek/`, with `README.TXT` and `PLAY.COM`). Progress is kept in
+(DigitalRerun's `disks/shelf/sigseek/`, with `README.TXT` = `docs/PLAYING.txt` here, and `PLAY.COM`). Progress is kept in
 `SIGSEEK.SAV` beside them.
 
-Build: `sh apps/sigseek/build.sh` (needs pasmo; `PASMO=` points at another copy),
-then `node tools/build.js` for `shelf.json` and `node tools/stamp.js`.
+Build: `sh build.sh` (needs pasmo; `PASMO=` points at another copy; `DEST=<dir>` also copies
+both files there). In DigitalRerun, where this repository is the submodule `apps/sigseek`:
+`DEST=disks/shelf/sigseek sh apps/sigseek/build.sh`, then `node tools/build.js` for
+`shelf.json` and `node tools/stamp.js`.
 
 ## Terminals
 
@@ -410,8 +412,8 @@ Everything was tested headless on DigitalRerun's own Z80 core, terminal and CP/M
 (from pasmo's symbol table) and press keys. They tune, clean, solve routing grids
 by search, and check the screens in all three terminal modes.
 
-In the repository's tests: `test/sigseek.test.js` (the `.DAT` is current, the shelf
-copies match, an overlong line is refused) and a shelf test (`PLAY` starts a shift,
+Tests here: `node --test` (`test/sigseek.test.js`: the `.DAT` is current, an overlong line
+is refused). In DigitalRerun's tests: the shelf copies match, and a shelf test (`PLAY` starts a shift,
 `Q` saves it, the next run is shift 02; it waits only for what it wants to see,
 so it takes a fraction of a second).
 
