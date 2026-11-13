@@ -193,8 +193,8 @@ ti_1:   ld      a,(hl)
         inc     hl
         inc     b
         jr      ti_1
-ti_2:   ld      b,6             ; the name, bold
-        ld      c,30
+ti_2:   ld      b,6             ; the name, bold, centred
+        ld      c,28
         call    gotoxy
         ld      a,A_BOLD
         call    setattr
@@ -219,8 +219,8 @@ ti_2:   ld      b,6             ; the name, bold
         ld      c,30
         call    gotoxy
         call    puts
-ti_2a:  ld      b,22            ; and the key, blinking
-        ld      c,30
+ti_2a:  ld      b,22            ; and the key, blinking, centred
+        ld      c,32
         call    gotoxy
         ld      a,A_BLINK
         call    setattr

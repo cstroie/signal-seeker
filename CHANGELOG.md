@@ -2,6 +2,10 @@
 
 Releases carry `SIGSEEK.COM` and `SIGSEEK.DAT`; copy both onto a disk, side by side.
 
+## 1.51.2 (2026-11-13)
+
+- The title screen's name and "press any key" are centred.
+
 ## 1.51.1 (2026-11-05, first release)
 
 The game as it stands: a live spectrogram you tune by hand (or let AutoTune have a go at), packets
