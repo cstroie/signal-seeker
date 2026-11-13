@@ -33,9 +33,10 @@ memory after the program) on the **Signal Seeker** shelf disk
 `SIGSEEK.SAV` beside them.
 
 Build: `sh build.sh` (needs pasmo; `PASMO=` points at another copy; `DEST=<dir>` also copies
-both files there). In DigitalRerun, where this repository is the submodule `apps/sigseek`:
-`DEST=disks/shelf/sigseek sh apps/sigseek/build.sh`, then `node tools/build.js` for
-`shelf.json` and `node tools/stamp.js`.
+both files there). Neither file is in git: the GitHub release carries both. In DigitalRerun, where
+this repository is the submodule `apps/sigseek`, the shelf gets the release's files
+(`gh release download <tag> -R cstroie/signal-seeker -D disks/shelf/sigseek`), then
+`node tools/build.js` for `shelf.json` and `node tools/stamp.js`.
 
 ## Terminals
 
@@ -412,7 +413,7 @@ Everything was tested headless on DigitalRerun's own Z80 core, terminal and CP/M
 (from pasmo's symbol table) and press keys. They tune, clean, solve routing grids
 by search, and check the screens in all three terminal modes.
 
-Tests here: `node --test` (`test/sigseek.test.js`: the `.DAT` is current, an overlong line
+Tests here: `node --test test/*.test.js` (build first; `test/sigseek.test.js`: the `.DAT` is current, an overlong line
 is refused). In DigitalRerun's tests: the shelf copies match, and a shelf test (`PLAY` starts a shift,
 `Q` saves it, the next run is shift 02; it waits only for what it wants to see,
 so it takes a fraction of a second).

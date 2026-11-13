@@ -19,13 +19,9 @@ The station keeps running when you step away.
 
 ## Playing
 
-You need a CP/M 2.2 machine (or an emulator) with a VT100, VT52 or ADM-3A console.
-The easiest is [DigitalRerun](https://github.com/cstroie/digital-rerun), a CP/M computer in
-the browser, which carries Signal Seeker on its shelf: *Games*, *Signal Seeker*,
-*Insert*, then type `PLAY`.
-
-On any other CP/M 2.2 system, copy `SIGSEEK.COM` and `SIGSEEK.DAT` onto a disk
-(**both**, side by side) and run:
+You need a CP/M 2.2 machine (or an emulator) with a VT100, VT52 or ADM-3A console. Take
+`SIGSEEK.COM` and `SIGSEEK.DAT` from the [releases](https://github.com/cstroie/signal-seeker/releases)
+and copy them onto a disk (**both**, side by side), then run:
 
 ```
 A>SIGSEEK          asks for your terminal the first time
@@ -66,8 +62,7 @@ to their name. Their letter shows, and each one moves their story on. Signals fr
 carry fragments of the old Lantern beacons: they go in the Archive. Spend tokens in the
 shop. A shift runs from 22:00 to 06:00, about 24 minutes, and the night is tallied at dawn.
 
-The full player's text is in [`docs/PLAYING.txt`](docs/PLAYING.txt), the same file that
-ships on the DigitalRerun disk. I will not spoil the rest.
+The full player's text is in [`docs/PLAYING.txt`](docs/PLAYING.txt). I will not spoil the rest.
 
 ## Building
 
@@ -77,13 +72,13 @@ You need [pasmo](https://pasmo.speccy.org/) (`apt install pasmo`) and Node.js.
 sh build.sh                  SIGSEEK.COM (pasmo) and SIGSEEK.DAT (mkdat.js)
 PASMO=/path/to/pasmo sh build.sh
 DEST=/some/disk/dir sh build.sh      also copy both files there
-node --test                  SIGSEEK.DAT is current with sigseek.txt
+node --test test/*.test.js   SIGSEEK.DAT is current with sigseek.txt (build first)
 ```
 
-`SIGSEEK.COM` and `SIGSEEK.DAT` are committed, so you can play without building.
 The game's words (messages, letters, Archive fragments, postcards) are in `sigseek.txt`;
 `mkdat.js` packs them into `SIGSEEK.DAT` and refuses a line too long for the screen.
 Edit the text, run `node mkdat.js`, and the game speaks it, no assembler needed.
+The version is in [VERSION](VERSION), the history in [CHANGELOG.md](CHANGELOG.md).
 
 ## Source
 
@@ -103,9 +98,11 @@ mechanic, the `SIGSEEK.DAT` and `SIGSEEK.SAV` formats, and how it was tested.
 
 The game was tested headless on [DigitalRerun](https://github.com/cstroie/digital-rerun)'s own
 Z80 core and CP/M 2.2, with scripted operators that read the game's memory (through pasmo's
-symbol table) and press keys. That harness lives in DigitalRerun, which carries this
-repository as a submodule at `apps/sigseek`.
+symbol table) and press keys. That harness lives in DigitalRerun, which has this repository
+as a submodule at `apps/sigseek` and ships the released files on its shelf.
 
 ## Licence
 
-MIT, see [LICENSE](LICENSE). Copyright (c) 2026 Costin Stroie.
+MIT, see [LICENSE](LICENSE). Copyright (c) 2026 Costin Stroie. Signal Seeker is a separate project
+from DigitalRerun: DigitalRerun only ships the built files, under this same licence, and its own
+licence terms do not apply to them.

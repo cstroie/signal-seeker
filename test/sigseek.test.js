@@ -1,6 +1,6 @@
 'use strict';
 // SIGSEEK.DAT is current with sigseek.txt, and mkdat checks the screen widths.
-// Run: node --test
+// Run: node --test test/*.test.js (after sh build.sh: the .DAT is not in git)
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
@@ -9,7 +9,9 @@ const { parse, pack } = require('../mkdat.js');
 
 const ROOT = path.join(__dirname, '..');
 
-test('SIGSEEK.DAT is packed from sigseek.txt as it stands', () => {
+const haveDat = fs.existsSync(path.join(ROOT, 'SIGSEEK.DAT'));
+
+test('SIGSEEK.DAT is packed from sigseek.txt as it stands', { skip: !haveDat }, () => {
     const want = pack(parse(fs.readFileSync(path.join(ROOT, 'sigseek.txt'), 'latin1')));
     assert.deepEqual(new Uint8Array(fs.readFileSync(path.join(ROOT, 'SIGSEEK.DAT'))), want);
 });
